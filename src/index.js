@@ -11,6 +11,8 @@ import {
 } from 'react-router-dom';
 import Blog from './Components/Blog/Blog';
 import BlogDetail from './Components/Blog/BlogDetail';
+import Home from './Components/Home/Home';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +20,7 @@ root.render(
     <Router>
       <App>
         <Routes>
+          <Route path='/' element={<Home/>}/>
           <Route path='/blog' element={<Blog/>}/>
           <Route path='/blog/details' element={<BlogDetail/>}/>
         </Routes>
