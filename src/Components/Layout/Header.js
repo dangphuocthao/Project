@@ -98,7 +98,7 @@ function Header(){
                             </li> 
                             <li className="dropdown"><a href="#">Blog<i className="fa fa-angle-down" /></a>
                             <ul role="menu" className="sub-menu">
-                                <li><Link to="/blog">Blog List</Link></li>
+                                <li><Link to="/blog/list/">Blog List</Link></li>
                                 <li><a href="blog-single.html">Blog Single</a></li>
                             </ul>
                             </li> 

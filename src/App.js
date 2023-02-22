@@ -9,7 +9,7 @@ function App(props) {
   return (
     <>
         <Header/>
-        <Slider/>
+        {/* <Slider/> */}
         <section>
             <div className="container">
               <div className="row">

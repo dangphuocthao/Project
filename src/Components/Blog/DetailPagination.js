@@ -1,20 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
-function BlogDetail(props){
+function DetailPagination(){
   let {id} = useParams();
   const temp= parseInt(id, 10);
   const [item , setItem] = useState([])
   useEffect(() => {
-    axios.get("http://localhost/laravel/public/api/blog/detail/" + id)
+    axios.get("http://localhost/laravel/public/api/blog/detail-pagination/" + id)
     .then(res => {
       setItem(res.data.data)
     })
     .catch(error => console.log(error))
   },[])
-  const renderData = () =>{
+  const renderData= () =>{
     return(
       <div className="col-sm-9">
             <div className="blog-post-area">
@@ -35,8 +35,8 @@ function BlogDetail(props){
                   <p>{item.content}</p> <br />
                 <div className="pager-area">
                   <ul className="pager pull-right">
-                    <li><Link to={"/blog/detail/Pagi/" + (temp-1)}>Pre</Link></li>
-                    <li><Link to={"/blog/detail/Pagi/" + (temp+1)}>Next</Link></li>
+                    <li><a href={"/blog/detail/Pagi/" + (temp-1)}>Pre</a></li>
+                    <li><a href={"/blog/detail/Pagi/" + (temp+1)}>Next</a></li>
                   </ul>
                 </div>
               </div>
@@ -52,11 +52,11 @@ function BlogDetail(props){
     }
   }
     return(
-        <>    
+        <>   
           {errorPage()}
           {renderData()}
           
       </>
     )
 }
-export default BlogDetail; 
+export default DetailPagination; 

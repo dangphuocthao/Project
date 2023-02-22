@@ -1,6 +1,7 @@
 
 import axios from "axios"
 import { useState,useEffect, } from "react"
+import { Link } from "react-router-dom"
 
 function Blog() {
     const [item, setItem] = useState([])
@@ -34,7 +35,7 @@ function Blog() {
               </div>
                 <img src={"https://localhost/laravel/public/upload/Blog/image/" +value.image} />
                 {value.description}
-              <a className="btn btn-primary" href>Read More</a>
+              <Link to={"/blog/detail/" + (value.id)} className="btn btn-primary" href>Read More</Link>
             </div>
           )
         })
@@ -49,9 +50,9 @@ function Blog() {
                       {renderData()}
                   <div className="pagination-area">
                     <ul className="pagination">
-                      <li><a href className="active">1</a></li>
-                      <li><a href>2</a></li>
-                      <li><a href>3</a></li>
+                      <li><Link to={"/blog/list/" + 1} className="active">1</Link></li>
+                      <li><Link to={"/blog/list/" + 2} >2</Link></li>
+                      <li><Link to={"/blog/list/" + 3}>3</Link></li>
                       <li><a href><i className="fa fa-angle-double-right" /></a></li>
                     </ul>
                   </div>
