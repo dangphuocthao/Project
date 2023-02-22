@@ -1,4 +1,26 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+
 function BlogDetail(){
+  const [item , getItem] = useState([])
+  useEffect(() => {
+    axios.get("https://localhost/laravel/public/api/blog")
+    .then(res => {
+      getItem(res.data.blog.data)
+    })
+    .catch(error => console.log(error))
+  },[])
+  
+
+  const renderData= () => {
+    if(item.length > 0){
+      return item.map((value,key)=>{
+        return (<></>)
+      })
+    }
+
+  }
     return(
         <div>    
               <div className="col-sm-9">
