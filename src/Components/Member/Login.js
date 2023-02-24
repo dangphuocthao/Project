@@ -29,21 +29,18 @@ function Login() {
     const handleSubmit = (e) =>{
         e.preventDefault();
         let errMess = {};
-        let flag = true;
         if(inputs.email === ""){
             errMess.email = "Vui lòng nhập Email"
-            flag = false;
         }else{
             if(!validateEmail(inputs.email)){
                 errMess.email = "Vui lòng nhập đúng định dạng Email";
-                flag = false;
+
             }
         }
         if(inputs.password === "") {
             errMess.password = "Vui lòng nhập Password";
-            flag = false;
         }
-        if(!flag){
+        if(Object.keys(errMess).length > 0) {
             setErr(errMess);
         }else{
             const data = {

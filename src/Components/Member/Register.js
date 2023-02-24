@@ -37,48 +37,44 @@ function Register(){
     const handleSubmit = (e) =>{
         e.preventDefault();
         let errMess = {};
-        let flag = true;
         if(inputs.name === ""){
             errMess.name = "Vui lòng nhập Name"
-            flag = false;
         }
         if(inputs.email === ""){
             errMess.email = "Vui lòng nhập Email"
-            flag = false;
         }else{
             if(!validateEmail(inputs.email)){
                 errMess.email = "Bạn cần nhập đúng định dạng Email"
-                flag = false;
             }
         }
         if(inputs.password === ""){
             errMess.password = "Vui lòng nhập Password"
-            flag = false;
         }
         if(inputs.phone === ""){
             errMess.phone = "Vui lòng nhập Phone"
-            flag = false;
         }
         if(inputs.address === ""){
             errMess.address = "Vui lòng nhập Địa chỉ"
-            flag = false;
         }
         if(files.length === 0){
             errMess.file = "Vui lòng upload file"
-            flag = false;
         }else{
             const extension = files.type.split('/')[1]
             if(files.size > 1024 *1024){
                 errMess.size = "File bạn nhập lớn hơn 1mb"
-                flag = false;
             }
-            if(extension !== 'png' && extension !== 'jpg' && extension !== 'jpeg' && extension !== 'PNG' && extension !== 'JPG')
+            if(![
+                "png",
+                "jpg",
+                "jpeg",
+                "PNG",
+                "JPG",
+            ].includes(extension))
             {
                 errMess.type = "Lỗi định dạng"
-                flag = false;
             }
         }
-        if(!flag){
+        if(Object.keys(errMess).length > 0){
             setErr(errMess);
         }else{
             const data ={
@@ -98,10 +94,10 @@ function Register(){
                   errMess= res.data.errors;
                   setErr(errMess)
                   alert("Loi API")
-                }else(
-                    alert("Dang Ky Thanh Cong")
-                   
-                )
+                }else{
+                    alert("Đăng ký thành công")
+                }  
+                
             }).catch(error => {
                 console.error(error);
             });
