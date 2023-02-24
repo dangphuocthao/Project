@@ -1,4 +1,9 @@
+import { useState } from 'react';
 import {Link} from 'react-router-dom'
+
+const isLogged =  {
+    isLog : localStorage.getItem("jwt") !==null,
+}
 function Header(){
     return(
         <>
@@ -65,7 +70,13 @@ function Header(){
                             <li><a href><i className="fa fa-star" /> Wishlist</a></li>
                             <li><a href="checkout.html"><i className="fa fa-crosshairs" /> Checkout</a></li>
                             <li><a href="cart.html"><i className="fa fa-shopping-cart" /> Cart</a></li>
-                            <li><Link to={"/account/"}><i className="fa fa-lock" /> Login</Link></li>
+                            {isLogged.isLog ? (
+                                <li><i className="fa fa-lock" />Logout</li> 
+                                ) : (
+                                    <li><Link to={"/account/"}><i className="fa fa-lock" />Login</Link></li>
+                                )
+                            }
+                            
                         </ul>
                         </div>
                     </div>
@@ -93,7 +104,7 @@ function Header(){
                                 <li><a href="product-details.html">Product Details</a></li> 
                                 <li><a href="checkout.html">Checkout</a></li> 
                                 <li><a href="cart.html">Cart</a></li> 
-                                <li><a href="login.html">Login</a></li> 
+                                <li><Link to={"/account/"}>Login</Link></li> 
                             </ul>
                             </li> 
                             <li className="dropdown"><a href="#">Blog<i className="fa fa-angle-down" /></a>

@@ -6,6 +6,7 @@ import ErrMess from "./ErrorMess";
 function Register(){
     const [files, setFile] = useState ([])
     const [avatar, setAvatar] = useState ([])
+    const [err, setErr] = useState([])
     const [inputs , setInputs] = useState({
         name: "",
         email:"",
@@ -18,7 +19,7 @@ function Register(){
         return re.test(String(email).toLowerCase());
     }
 
-    const [err, setErr] = useState([])
+   
     const handleInputs = (e) =>{
         const nameInput = e.target.name;
         const value = e.target.value;
@@ -33,7 +34,7 @@ function Register(){
         }
         reader.readAsDataURL(file[0])
     }
-    const handleSubmit = async (e) =>{
+    const handleSubmit = (e) =>{
         e.preventDefault();
         let errMess = {};
         let flag = true;
@@ -87,15 +88,15 @@ function Register(){
                 phone: inputs.phone,
                 address: inputs.address,
                 level: 0,
-                avatar:avatar,
+                avatar: avatar,
 
             }
             //Post user lên API
             axios.post("https://localhost/laravel/public/api/register" , data)
             .then(res => {
                 if(res.data.errors){
-                  errMess.datas= res.data.errors;
-                  setErr(errMess.datas)
+                  errMess= res.data.errors;
+                  setErr(errMess)
                   alert("Loi API")
                 }else(
                     alert("Dang Ky Thanh Cong")
