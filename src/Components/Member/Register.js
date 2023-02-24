@@ -1,13 +1,15 @@
+
 import axios from "axios";
 import { useState } from "react";
 import ErrMess from "./ErrorMess";
 
 function Register(){
     const [files, setFile] = useState ([])
+    const [avatar, setAvatar] = useState ([])
     const [inputs , setInputs] = useState({
         name: "",
         email:"",
-        pass:"",
+        password:"",
         phone:"",
         address:"",
     })
@@ -15,6 +17,7 @@ function Register(){
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     }
+
     const [err, setErr] = useState([])
     const handleInputs = (e) =>{
         const nameInput = e.target.name;
@@ -22,7 +25,13 @@ function Register(){
         setInputs(state=> ({...state, [nameInput]:value}))
     }
     const handleChange = (e) =>{
-        setFile(e.target.files[0]);
+        const file = e.target.files;
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            setAvatar(e.target.result);
+            setFile(file[0])
+        }
+        reader.readAsDataURL(file[0])
     }
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -41,8 +50,8 @@ function Register(){
                 flag = false;
             }
         }
-        if(inputs.pass === ""){
-            errMess.pass = "Vui lòng nhập Password"
+        if(inputs.password === ""){
+            errMess.password = "Vui lòng nhập Password"
             flag = false;
         }
         if(inputs.phone === ""){
@@ -71,35 +80,34 @@ function Register(){
         if(!flag){
             setErr(errMess);
         }else{
-            alert("OK")
+            const data ={
+                name: inputs.name,
+                email: inputs.email,
+                password: inputs.password,
+                phone: inputs.phone,
+                address: inputs.address,
+                level: 0,
+                avatar:avatar,
 
-            // Post user lên API
-            // axios.post("url/user" , inputs)
-            // .then(res => {
-            //     console.log(res.data);
-            // }).catch(error => {
-            //     console.error(error);
-            // });
-            //
-
-            // Post file lên API
-            // const formData = new FormData();
-            // files.forEach((file,index) => {
-            //     formData.append(`file${index}`, file);
-            // })
-            // axios.post("url/api" ,formData, {
-            //     headers: {
-            //         "Content-Type": "multipart/form-data"
-            //     }
-            // }).then(res => {
-            //     console.log(res.data);
-            // }).catch(error => {
-            //     console.error(error);
-            // });
-            //
-            
+            }
+            //Post user lên API
+            axios.post("https://localhost/laravel/public/api/register" , data)
+            .then(res => {
+                if(res.data.errors){
+                  errMess.datas= res.data.errors;
+                  setErr(errMess.datas)
+                  alert("Loi API")
+                }else(
+                    alert("Dang Ky Thanh Cong")
+                   
+                )
+            }).catch(error => {
+                console.error(error);
+            });
+           
+    }   
         }
-    }
+        
 
     return (
 
@@ -113,8 +121,8 @@ function Register(){
                 <p>{err.name}</p>
                 <input type="text" placeholder="Email Address" name="email" onChange={handleInputs}/>
                 <p>{err.email}</p>
-                <input type="password" placeholder="Password" name="pass" onChange={handleInputs}/>
-                <p>{err.pass}</p>
+                <input type="password" placeholder="Password" name="password" onChange={handleInputs}/>
+                <p>{err.password}</p>
                 <input type="tel" placeholder="Phone" name="phone"  onChange={handleInputs}/>
                 <p>{err.phone}</p>
                 <input type="text" placeholder="Address" name="address" onChange={handleInputs}/>
