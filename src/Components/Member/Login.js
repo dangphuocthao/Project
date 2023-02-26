@@ -1,7 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Home from "../Home/Home";
+import {useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ErrMess from "./ErrorMess";
 
 function Login() {
@@ -58,13 +57,19 @@ function Login() {
                      errMess.loginn = "Logout" 
                      setErr(errMess) 
                 }   
-                const token = res.data.success.token;
+                const dataUser = {
+                    token : res.data.success.token,
+                    name: res.data.Auth.name,
+                    avatar: res.data.Auth.avatar,
+                    id: res.data.Auth.id,
+                };
                 //Lưu JWT vào localStorage
-                localStorage.setItem('jwt', token);
+                localStorage.setItem("jwt", JSON.stringify(dataUser));
             }).catch(error => {
                 console.error(error);
             })
         }
+
 }
     return(
         <>
