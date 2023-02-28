@@ -25,13 +25,7 @@ function Blog() {
                   <li><i className="fa fa-clock-o" /> 1:33 pm</li>
                   <li><i className="fa fa-calendar" /> DEC 5, 2013</li>
                 </ul>
-                <span>
-                  <i className="fa fa-star" />
-                  <i className="fa fa-star" />
-                  <i className="fa fa-star" />
-                  <i className="fa fa-star" />
-                  <i className="fa fa-star-half-o" />
-                </span>
+
               </div>
                 <img src={"https://localhost/laravel/public/upload/Blog/image/" +value.image} />
                 {value.description}
@@ -48,6 +42,7 @@ function Blog() {
                 <div className="blog-post-area">
                   <h2 className="title text-center">Latest From our Blog</h2>
                       {renderData()}
+
                   <div className="pagination-area">
                     <ul className="pagination">
                       <li><Link to={"/blog/list/" + 1} className="active">1</Link></li>

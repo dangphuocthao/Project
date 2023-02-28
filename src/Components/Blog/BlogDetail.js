@@ -2,8 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import CommentBox from "./Comment/CommentBox";
-
-
+import GetRate from "./Rate/GetRate";
+import RatePost from "./Rate/RatePost";
 function BlogDetail(props){
   let {id} = useParams();
   const temp= parseInt(id, 10);
@@ -31,7 +31,9 @@ function BlogDetail(props){
                     <li><i className="fa fa-clock-o" /> 1:33 pm</li>
                     <li><i className="fa fa-calendar" /> DEC 5, 2013</li>
                   </ul>
+                  <GetRate/>
                 </div>
+             
                   <a href>
                     <img src={"https://localhost/laravel/public/upload/Blog/image/" +item.image} />
                   </a>
@@ -59,6 +61,7 @@ function BlogDetail(props){
         <>
           {errorPage()}
           {renderData()}
+          <RatePost/>
           <CommentBox/>
       </>
     )

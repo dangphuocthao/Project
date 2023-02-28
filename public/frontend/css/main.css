@@ -113,7 +113,10 @@ a#scrollUp i {
     -webkit-transition: all 0.9s ease 0s;
     -o-transition: all 0.9s ease 0s;
 }
-
+.fa {
+    margin:  15px;
+    cursor: pointer;
+}
 .fa-facebook:hover {
     background: #0083C9;
 }
