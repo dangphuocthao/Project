@@ -12,9 +12,24 @@ function GetRate() {
         }).catch(error => console.error(error))
         
     },[])
-    const sumRate = datarate.reduce((total, value) => total + value.rate, 0);
-    const averageRate = sumRate / datarate.length;
+        const sumRate = Object.keys(datarate).reduce((total, key) => total + datarate[key].rate, 0);
+        const averageRate = sumRate / Object.keys(datarate).length;
+        console.log(averageRate);
+
+    
+ 
     const renderStar = () => {
+        if ( sumRate === 0) {
+            return(
+                 <span>
+                  <i className="fa fa-star-o" />
+                  <i className="fa fa-star-o" />
+                  <i className="fa fa-star-o" />
+                  <i className="fa fa-star-o" />
+                  <i className="fa fa-star-o" />
+                </span> 
+            )
+        }
         if ( averageRate >= 1 && averageRate < 2) {
             return(
                  <span>
