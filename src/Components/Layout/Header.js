@@ -1,13 +1,15 @@
 
 import {Link} from 'react-router-dom'
 
-const isLogged =  {
-    isLog : localStorage.getItem("jwt") !==null,
-}
-const handleLogout = () =>{
-    localStorage.removeItem('jwt');
-}
+
+
 function Header(){
+    const isLogged =  {
+        isLog : localStorage.getItem("jwt") !==null,
+    }
+    const handleLogout = () =>{
+        localStorage.removeItem('jwt');
+    }
     return(
         <>
             <header id="header">{/*header*/}
@@ -70,9 +72,9 @@ function Header(){
                         <div className="shop-menu clearfix pull-right">
                         <ul className="nav navbar-nav">
                         {isLogged.isLog ? (
-                                <li><Link to={"/account/"}><i className="fa fa-user" /> Account</Link></li>
+                                <li><Link to={"/account/update/"}><i className="fa fa-user" /> Account</Link></li>
                                 ) : (
-                                    <li><Link to={"/account/"}><i className="fa fa-user" /> Account</Link></li>
+                                    <li><Link to={"/account/update/"}><i className="fa fa-user" /> Account</Link></li>
                                 )
                             }
                             <li><a href><i className="fa fa-star" /> Wishlist</a></li>
@@ -80,9 +82,9 @@ function Header(){
                             <li><a href="cart.html"><i className="fa fa-shopping-cart" /> Cart</a></li>
                             
                             {isLogged.isLog ? (
-                                <li onClick={handleLogout}><Link to={"/account/"}><i className="fa fa-lock" />Logout</Link></li>
+                                <li onClick={handleLogout}><Link to={"/member/"}><i className="fa fa-lock" />Logout</Link></li>
                                 ) : (
-                                    <li><Link to={"/account/"}><i className="fa fa-lock" />Login</Link></li>
+                                    <li><Link to={"/member/"}><i className="fa fa-lock" />Login</Link></li>
                                 )
                             }
                             
@@ -113,7 +115,7 @@ function Header(){
                                 <li><a href="product-details.html">Product Details</a></li> 
                                 <li><a href="checkout.html">Checkout</a></li> 
                                 <li><a href="cart.html">Cart</a></li> 
-                                <li><Link to={"/account/"}>Login</Link></li> 
+                                <li><Link to={"/member/"}>Login</Link></li> 
                             </ul>
                             </li> 
                             <li className="dropdown"><a href="#">Blog<i className="fa fa-angle-down" /></a>

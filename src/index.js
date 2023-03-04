@@ -12,7 +12,9 @@ import Blog from './Components/Blog/Blog';
 import BlogDetail from './Components/Blog/BlogDetail';
 import Home from './Components/Home/Home';
 import DetailPagination from './Components/Blog/DetailPagination';
-import Account from './Components/Member';
+import Member from './Components/Member';
+import Account from './Components/Account';
+import Myproduct from './Components/Account/Myproduct';
 
 
 
@@ -25,10 +27,12 @@ root.render(
       <App>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/account/' element={<Account/>}/>
+          <Route path='/member/' element={<Member/>}/>
           <Route path='/blog/list/' element={<Blog/>}/>
           <Route path='/blog/detail/:id' element={<BlogDetail/>}/>
           <Route path='/blog/detail/Pagi/:id' element={<DetailPagination/>}/>
+          <Route path='/account/update/' element={<Account/>}/>
+          <Route path='/account/myproduct/' element={<Myproduct/>}/>
         </Routes>
       </App>
     </Router>

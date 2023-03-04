@@ -113,6 +113,9 @@ a#scrollUp i {
     -webkit-transition: all 0.9s ease 0s;
     -o-transition: all 0.9s ease 0s;
 }
+.container1{
+    width: 850px;
+}
 .fa {
     cursor: pointer;
 }

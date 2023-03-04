@@ -124,7 +124,7 @@ function Register(){
                 <p>{err.phone}</p>
                 <input type="text" placeholder="Address" name="address" onChange={handleInputs}/>
                 <p>{err.address}</p>
-                <input type="file" name="address" onChange={handleChange}/>
+                <input type="file" name="file" onChange={handleChange}/>
                 <p>{err.file}</p>
                 <p>{err.type}</p>
                 <p>{err.size}</p>

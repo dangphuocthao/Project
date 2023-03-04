@@ -54,14 +54,17 @@ function Login() {
                     setErr(errMess)
                 }else {
                      navigate('/')
-                     errMess.loginn = "Logout" 
-                     setErr(errMess) 
+                     console.log(res);
                 }   
                 const dataUser = {
                     token : res.data.success.token,
                     name: res.data.Auth.name,
                     avatar: res.data.Auth.avatar,
                     id: res.data.Auth.id,
+                    email: res.data.Auth.email,
+                    address: res.data.Auth.address,
+                    password: inputs.password,
+                    phone: res.data.Auth.phone,
                 };
                 //Lưu JWT vào localStorage
                 localStorage.setItem("jwt", JSON.stringify(dataUser));

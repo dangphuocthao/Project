@@ -2,7 +2,7 @@
 import Login from "./Login";
 import Register from "./Register";
 
-function Account() {
+function Member() {
     return (
         <>
         {<Login/>}
@@ -13,4 +13,4 @@ function Account() {
         </>
     )
 }
-export default Account;
+export default Member;

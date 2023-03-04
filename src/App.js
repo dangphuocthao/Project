@@ -1,11 +1,15 @@
+import { useLocation } from "react-router-dom";
+import Menuacc from "./Components/Account/Menuacc";
 import Footer from "./Components/Layout/Footer";
 import Header from "./Components/Layout/Header";
 import MenuLeft from "./Components/Layout/MenuLeft";
-import Slider from "./Components/Layout/Slider";
 
 
 
 function App(props) {
+  let param = useLocation();
+
+  console.log(param);
   return (
     <>
         <Header/>
@@ -13,7 +17,7 @@ function App(props) {
         <section>
             <div className="container">
               <div className="row">
-                  <MenuLeft />
+                  {param["pathname"].includes("account") ? <Menuacc/> : <MenuLeft/>}
                   {props.children}
               </div>
             </div>
