@@ -26,6 +26,7 @@ function Update () {
             email: inputs.email ? inputs.email : data.email,
             address: inputs.address ? inputs.address : data.address,
             phone: inputs.phone ? inputs.phone : data.phone,
+            password: inputs.password ? inputs.password : data.password,
         }
         axios.post(url, dataUser, config)
         .then(res => {

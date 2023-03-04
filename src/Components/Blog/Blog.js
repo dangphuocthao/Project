@@ -27,7 +27,7 @@ function Blog() {
                 </ul>
 
               </div>
-                <img src={"https://localhost/laravel/public/upload/Blog/image/" +value.image} />
+                <img src={"https://localhost/laravel/public/upload/Blog/image/" + value.image} />
                 {value.description}
               <Link to={"/blog/detail/" + (value.id)} className="btn btn-primary" href>Read More</Link>
             </div>

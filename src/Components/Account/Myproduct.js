@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
     const data = JSON.parse(localStorage["jwt"])
     const [item, setItem] = useState([])
     const token = data.token
-
     useEffect(() => {
         axios.get('https://localhost/laravel/public/api/user/my-product', {
         headers: {
@@ -15,7 +14,6 @@ import { useEffect, useState } from "react";
       },
     })
     .then(res => {
-        console.log(res.data.data);
         setItem(res.data.data);
     }).catch(err => {
         console.error(err);
@@ -51,7 +49,7 @@ import { useEffect, useState } from "react";
                                     <h4><a href>{value.name}</a></h4>
                                 </td>
                                 <td className="cart_product">
-                                   <img src={"https:localhost/laravel/public/upload/user/product/2/" + firstImage} />
+                                   <img src={"https://localhost/laravel/public/upload/user/product/" + data.id + "/" + firstImage}/>
                                 </td>
                                 <td className="cart_price">
                                     <p>{value.price}</p>
@@ -59,7 +57,6 @@ import { useEffect, useState } from "react";
                                 <td className="cart_delete">
                                     <a className="cart_quantity_delete" href><i className="fa fa-delete" /></a>
                                     <a className="cart_quantity_delete" href><i className="fa fa-edit" /></a>
-        
                                 </td>
                                 </tr>
                             </tbody>

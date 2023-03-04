@@ -143,7 +143,7 @@ function BlogDetail(props){
                    <ul className="media-list">
                      <li className="media">
                        <a className="pull-left" href="#">
-                         <img className="media-object" src={"https:localhost/laravel/public/upload/user/avatar/" +value.image_user} />
+                         <img className="media-object" src={"https://localhost/laravel/public/upload/user/avatar/" +value.image_user} />
                        </a>
                        <div className="media-body">
                          <ul className="sinlge-post-meta">

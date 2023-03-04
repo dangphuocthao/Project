@@ -74,7 +74,7 @@ function Header(){
                         {isLogged.isLog ? (
                                 <li><Link to={"/account/update/"}><i className="fa fa-user" /> Account</Link></li>
                                 ) : (
-                                    <li><Link to={"/account/update/"}><i className="fa fa-user" /> Account</Link></li>
+                                    <li><Link to={"/member/"}><i className="fa fa-user" /> Account</Link></li>
                                 )
                             }
                             <li><a href><i className="fa fa-star" /> Wishlist</a></li>
