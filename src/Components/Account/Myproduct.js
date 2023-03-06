@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
  
@@ -72,6 +73,11 @@ import { useEffect, useState } from "react";
     return(
         <>
         {renderProduct()}
+        <div className="col-sm-12">
+            <Link to={"/account/newproduct/"}>
+            <button type="button" className="btn btn-default pull-right">Edit</button>
+            </Link>
+        </div>
         </>
     )
  }

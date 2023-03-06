@@ -15,6 +15,7 @@ import DetailPagination from './Components/Blog/DetailPagination';
 import Member from './Components/Member';
 import Account from './Components/Account';
 import Myproduct from './Components/Account/Myproduct';
+import NewProduct from './Components/Account/NewProduct';
 
 
 
@@ -33,6 +34,7 @@ root.render(
           <Route path='/blog/detail/Pagi/:id' element={<DetailPagination/>}/>
           <Route path='/account/update/' element={<Account/>}/>
           <Route path='/account/myproduct/' element={<Myproduct/>}/>
+          <Route path='/account/newproduct/' element={<NewProduct/>}/>
         </Routes>
       </App>
     </Router>

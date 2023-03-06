@@ -9,7 +9,6 @@ import MenuLeft from "./Components/Layout/MenuLeft";
 function App(props) {
   let param = useLocation();
 
-  console.log(param);
   return (
     <>
         <Header/>
