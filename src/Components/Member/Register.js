@@ -19,6 +19,8 @@ function Register(){
         return re.test(String(email).toLowerCase());
     }
 
+    
+
    
     const handleInputs = (e) =>{
         const nameInput = e.target.name;

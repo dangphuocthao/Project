@@ -14,10 +14,6 @@ function GetRate() {
     },[])
         const sumRate = Object.keys(datarate).reduce((total, key) => total + datarate[key].rate, 0);
         const averageRate = sumRate / Object.keys(datarate).length;
-        console.log(averageRate);
-
-    
- 
     const renderStar = () => {
         if ( sumRate === 0) {
             return(

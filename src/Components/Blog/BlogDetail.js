@@ -104,7 +104,6 @@ function BlogDetail(props){
         if(inputs === "" ){
             errMess.comment = "Vui lòng nhập comment"
         }else{
-            setInputs('');
             const formData = new FormData();
               formData.append('id_blog', id);
               formData.append('id_user', dataUser.id);
