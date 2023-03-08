@@ -16,6 +16,7 @@ import Member from './Components/Member';
 import Account from './Components/Account';
 import Myproduct from './Components/Account/Myproduct';
 import NewProduct from './Components/Account/NewProduct';
+import EditProduct from './Components/Account/EditProduct';
 
 
 
@@ -35,6 +36,7 @@ root.render(
           <Route path='/account/update/' element={<Account/>}/>
           <Route path='/account/myproduct/' element={<Myproduct/>}/>
           <Route path='/account/newproduct/' element={<NewProduct/>}/>
+          <Route path='/account/editproduct/:id' element={<EditProduct/>}/>
         </Routes>
       </App>
     </Router>

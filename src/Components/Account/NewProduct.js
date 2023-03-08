@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import {useNavigate } from "react-router-dom";
 import ErrMess from "../Member/ErrorMess";
 
 function NewProduct() {
     const data = JSON.parse(localStorage["jwt"])
+    const navigate = useNavigate();
     const [err, setErr]= useState({})
     const [item, setItem] = useState([])
     const [files, setFiles] = useState([])
@@ -135,6 +137,7 @@ function NewProduct() {
             axios.post(url, formData, config)
             .then(res => {
                 console.log(res);
+                navigate('/account/myproduct/')
             }).catch(err => {
                 console.log(err);
             })
@@ -173,7 +176,7 @@ function NewProduct() {
                     {err.maxfile}
                     <textarea  placeholder="Detail" name= "detail" onChange={handleInput}/>
                     {err.detail}
-                    <button type="submit" className="btn btn-default">Signup</button>
+                    <button type="submit" className="btn btn-default">Creact</button>
                     </form>
                 </div>
             </div>

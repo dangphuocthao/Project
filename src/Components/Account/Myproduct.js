@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -25,6 +26,7 @@ import { Link } from "react-router-dom";
         if(Object.keys(item).length > 0){
 
             return(Object.keys(item).map(( key) => {
+
                 const imagesArray = JSON.parse(item[key].image);
                 const firstImage = imagesArray[0];
                 return(
@@ -43,8 +45,22 @@ import { Link } from "react-router-dom";
                                     <p>{item[key].price}</p>
                                 </td>
                                 <td className="cart_delete">
-                                    <a className="cart_quantity_delete" href><i className="fa fa-delete" /></a>
-                                    <a className="cart_quantity_delete" href><i className="fa fa-edit" /></a>
+                                <Link type="button" className="btn btn-default" 
+                                onClick={ () => {
+                                    axios.get("https://localhost/laravel/public/api/user/delete-product/" + item[key].id ,{
+                                        headers: {
+                                        Authorization: `Bearer ${token}`,
+                                      },
+                                    }).then(res => {
+                                        console.log(res.data);
+                                    }).catch(err => {
+                                        console.log(err);
+                                    })
+                                   
+                                }}>
+                                    Delete
+                                </Link>
+                                <Link to= {'/account/editproduct/' + item[key].id} type="button" className="btn btn-default">Edit</Link> 
                                 </td>
                                 </tr>
                             </tbody>
