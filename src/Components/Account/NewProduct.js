@@ -173,7 +173,6 @@ function NewProduct() {
                     {err.file}
                     {err.size}
                     {err.type}
-                    {err.maxfile}
                     <textarea  placeholder="Detail" name= "detail" onChange={handleInput}/>
                     {err.detail}
                     <button type="submit" className="btn btn-default">Creact</button>

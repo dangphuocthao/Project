@@ -22,7 +22,6 @@ function BlogDetail(props){
     })
     .catch(error => console.log(error))
   },[iscomment])
-
   // RenderDataDetail
   const renderData = () =>{
     return(

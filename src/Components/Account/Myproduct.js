@@ -39,7 +39,7 @@ import { Link } from "react-router-dom";
                                     <h4><a href>{item[key].name}</a></h4>
                                 </td>
                                 <td className="cart_product">
-                                   <img src={"https://localhost/laravel/public/upload/user/product/" + data.id + "/" + firstImage}/>
+                                <img src={"https://localhost/laravel/public/upload/user/product/" + item[key].id_user + "/" + firstImage}/>
                                 </td>
                                 <td className="cart_price">
                                     <p>{item[key].price}</p>

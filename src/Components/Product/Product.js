@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom'
+function ProductShow() {
 
-function Home (){
     const [item , setItem] = useState([])
     useEffect(() => {
-        axios.get("https://localhost/laravel/public/api/product")
+        axios.get("https://localhost/laravel/public/api/product/list")
         .then(res => {
-           setItem(res.data.data);
+           setItem(res.data.data.data);
         }).catch(err => {
             console.log(err);
         })
@@ -56,6 +56,5 @@ function Home (){
             {renderProduct()}  
         </div>
     )
-
 }
-export default Home;
+export default ProductShow;

@@ -34,7 +34,6 @@ function Update () {
         }).catch (error => console.error(error))
     }
     return (
-        <>
             <div className="col-sm-4">
                 <div className="signup-form">{/*sign up form*/}
                     <h2>Edit Profile!</h2>
@@ -48,7 +47,6 @@ function Update () {
                     </form>
                 </div>{/*/sign up form*/}
             </div>
-        </>
     )
 
 }

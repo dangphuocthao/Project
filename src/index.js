@@ -17,6 +17,8 @@ import Account from './Components/Account';
 import Myproduct from './Components/Account/Myproduct';
 import NewProduct from './Components/Account/NewProduct';
 import EditProduct from './Components/Account/EditProduct';
+import Product from './Components/Product';
+import Detail from './Components/Product/Detail';
 
 
 
@@ -37,6 +39,8 @@ root.render(
           <Route path='/account/myproduct/' element={<Myproduct/>}/>
           <Route path='/account/newproduct/' element={<NewProduct/>}/>
           <Route path='/account/editproduct/:id' element={<EditProduct/>}/>
+          <Route path='/product/' element={<Product/>}/>
+          <Route path='/product/detail/:id' element={<Detail/>}/>
         </Routes>
       </App>
     </Router>

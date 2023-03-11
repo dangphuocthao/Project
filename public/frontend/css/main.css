@@ -169,7 +169,15 @@ a#scrollUp i {
     color: #fff;
     border-color: #FE980F;
 }
-
+.productinfo p, .overlay-content p {
+    display: block;
+}
+.editbutton{
+    display: grid;
+}
+.product-information p {
+    display: block;
+}
 .usa:active,
 .usa.active {
     background: none repeat scroll 0 0 #FE980F;
