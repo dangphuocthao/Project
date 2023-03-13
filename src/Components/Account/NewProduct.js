@@ -39,7 +39,7 @@ function NewProduct() {
         if((item.category)?.length > 0){
             return(
                     <select name="category" onChange={handleInput}>
-                        <option>Please choose category</option>
+                        <option hidden="hidden">Please choose category</option>
                         {(item.category).map((value)=> 
                             <option key={value.id} value={value.id}>{value.category}</option>
                         )}
@@ -52,7 +52,7 @@ function NewProduct() {
         if((item.brand)?.length > 0){
             return(
                     <select name="brand" onChange={handleInput}>
-                        <option>Please choose brand</option>
+                        <option hidden="hidden">Please choose brand</option>
                         {(item.brand).map((value)=> 
                             <option key={value.id} value={value.id}>{value.brand}</option>
                         )}

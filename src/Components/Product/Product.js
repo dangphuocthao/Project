@@ -12,14 +12,17 @@ function ProductShow() {
             console.log(err);
         })
     },[])
+    const handleAddtocart = (e) => {
+        const id = e.target.id
+        console.log(id);
+    }
     const renderProduct = () => {
         if(item && Object.keys(item)?.length >0 ){
-           return(Object.keys(item).map((value) => { 
+           return(Object.keys(item).map((value , key) => { 
             const imagesArray = JSON.parse(item[value].image);
             const firstImage = imagesArray[0];
                     return(
-
-                            <div className="col-sm-4">
+                            <div className="col-sm-4" key={key}>
                                 <div className="product-image-wrapper">
                                     <div className="single-products">
                                         <div className="productinfo text-center">
@@ -32,7 +35,14 @@ function ProductShow() {
                                             <div className="overlay-content">
                                                 <h2>{item[value].price}</h2>
                                                 <p>{item[value].name}</p>
-                                                <a href="#" className="btn btn-default add-to-cart"><i className="fa fa-shopping-cart editbutton" />Add to cart</a>
+                                                <a
+                                                id={item[value].id}
+                                                 className="btn btn-default add-to-cart"
+                                                onClick={handleAddtocart}>
+                                                <i className="fa fa-shopping-cart editbutton"  
+                                                />Add to cart
+                                                </a>
+
                                                 <Link to={"/product/detail/" + item[value].id} className="btn btn-default add-to-cart editbutton">More</Link>
                                             </div>
                                         </div>

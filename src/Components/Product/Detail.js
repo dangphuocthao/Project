@@ -43,7 +43,7 @@ function Detail() {
                     <span>
                     <span>{item.price}</span>
                     <label>Quantity:</label>
-                    <input type="text" defaultValue={3} />
+                    <input type="text" defaultValue={1} />
                     <button type="button" className="btn btn-fefault cart">
                         <i className="fa fa-shopping-cart" />
                         Add to cart

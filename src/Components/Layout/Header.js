@@ -79,7 +79,7 @@ function Header(){
                             }
                             <li><a href><i className="fa fa-star" /> Wishlist</a></li>
                             <li><a href="checkout.html"><i className="fa fa-crosshairs" /> Checkout</a></li>
-                            <li><a href="cart.html"><i className="fa fa-shopping-cart" /> Cart</a></li>
+                            <li><Link to={"/cart/"}><i className="fa fa-shopping-cart" /> Cart</Link></li>
                             
                             {isLogged.isLog ? (
                                 <li onClick={handleLogout}><Link to={"/member/"}><i className="fa fa-lock" />Logout</Link></li>

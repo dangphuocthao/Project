@@ -8,7 +8,6 @@ function Login() {
     const [inputs, setInputs] = useState({
         email: "",
         password: "",
-        isLogged : localStorage.getItem('jwt') !==null,
     })
     
     const [err, setErr] = useState([])

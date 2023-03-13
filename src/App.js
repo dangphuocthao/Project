@@ -8,7 +8,22 @@ import MenuLeft from "./Components/Layout/MenuLeft";
 
 function App(props) {
   let param = useLocation();
-
+  const show = () => {
+    if(param["pathname"].includes("account")){
+      return(
+        <Menuacc/>
+      )
+    }
+    else{
+      if(param["pathname"].includes("cart")){
+        return
+      }else{
+        return(
+          <MenuLeft/>
+        )
+      }
+    }
+  }
   return (
     <>
         <Header/>
@@ -16,7 +31,7 @@ function App(props) {
         <section>
             <div className="container">
               <div className="row">
-                  {param["pathname"].includes("account") ? <Menuacc/> : <MenuLeft/>}
+                  {show()}
                   {props.children}
               </div>
             </div>

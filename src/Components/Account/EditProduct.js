@@ -44,7 +44,7 @@ function EditProduct() {
     const category = () => {
         if((CBrand.category)?.length > 0){
             return(
-                    <select name="category" defaultValue={item.id_category} onChange={handleInputs}>
+                    <select name="category" defaultValue={item.id_category}  onChange={handleInputs}>
                         
                         {(CBrand.category).map((value)=> 
                             <option key={value.id} value={value.id}>{value.category}</option>
