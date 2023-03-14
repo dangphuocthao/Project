@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 
 function Detail() {
     let {id} = useParams()
-    const [item, setItem] = useState()
-    const [CBrand, setCBrand] = useState()
+    const [qty, setQty] = useState(1);
+    const [item, setItem] = useState();
+    const [CBrand, setCBrand] = useState();
+    const [dataPd , setDataPd] = useState({});
     useEffect(() => {
         axios.get("https://localhost/laravel/public/api/product/detail/" + id)
         .then(res => {
@@ -20,6 +22,31 @@ function Detail() {
             console.log(err);
         })
     },[])
+    const handleQty = (e) =>{
+        setQty(e.target.value)
+    }
+    const handleAddtocart = () => {
+        setDataPd(state=> {
+            const newState = {...state}; // tạo 1 bản sao của biến state bằng toán tử spread (để tránh thay đổi trực tiếp giá trị của state)
+            if(newState[id]){
+                newState[id] += qty; // cộng thêm qty vào giá trị hiện tại của sản phẩm
+            }else{
+                newState[id] =qty // thêm 1 khóa-giá trị mới vào newstate ( id(khoa):qty(giatri))
+            }
+            return newState;
+        })
+    }
+    useEffect(() => {
+        const storedData = JSON.parse(localStorage.getItem('dataPd'));
+        if (storedData) {
+          setDataPd(state => Object.assign({}, state, storedData));
+        }
+      }, []);
+    useEffect(() => {
+        if (Object.keys(dataPd).length > 0) {
+          localStorage.setItem('dataPd', JSON.stringify(dataPd));
+        }
+      }, [dataPd]);
     const renderDetail = () => {
         if(item && Object.keys(item)?.length >0){
             
@@ -43,8 +70,8 @@ function Detail() {
                     <span>
                     <span>{item.price}</span>
                     <label>Quantity:</label>
-                    <input type="text" defaultValue={1} />
-                    <button type="button" className="btn btn-fefault cart">
+                    <input type="number" defaultValue={1} name = "qty" onChange={handleQty} />
+                    <button type="button" className="btn btn-fefault cart" onClick={handleAddtocart}>
                         <i className="fa fa-shopping-cart" />
                         Add to cart
                     </button>

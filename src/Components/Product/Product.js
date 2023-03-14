@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 function ProductShow() {
 
     const [item , setItem] = useState([])
+
     useEffect(() => {
         axios.get("https://localhost/laravel/public/api/product/list")
         .then(res => {
@@ -13,8 +14,12 @@ function ProductShow() {
         })
     },[])
     const handleAddtocart = (e) => {
+        let qty = 1;
         const id = e.target.id
-        console.log(id);
+        if(id === id){
+            qty += 1;
+        }
+        console.log(qty);
     }
     const renderProduct = () => {
         if(item && Object.keys(item)?.length >0 ){
@@ -35,15 +40,7 @@ function ProductShow() {
                                             <div className="overlay-content">
                                                 <h2>{item[value].price}</h2>
                                                 <p>{item[value].name}</p>
-                                                <a
-                                                id={item[value].id}
-                                                 className="btn btn-default add-to-cart"
-                                                onClick={handleAddtocart}>
-                                                <i className="fa fa-shopping-cart editbutton"  
-                                                />Add to cart
-                                                </a>
-
-                                                <Link to={"/product/detail/" + item[value].id} className="btn btn-default add-to-cart editbutton">More</Link>
+                                                <Link to={"/product/detail/" + item[value].id} className="btn btn-default add-to-cart" >Add to cart</Link>
                                             </div>
                                         </div>
                                     </div>
