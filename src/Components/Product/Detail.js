@@ -25,6 +25,7 @@ function Detail() {
     const handleQty = (e) =>{
         setQty(e.target.value)
     }
+    console.log(qty);
     const handleAddtocart = () => {
         setDataPd(state=> {
             const newState = {...state}; // tạo 1 bản sao của biến state bằng toán tử spread (để tránh thay đổi trực tiếp giá trị của state)

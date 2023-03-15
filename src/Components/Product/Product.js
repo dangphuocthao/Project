@@ -13,14 +13,6 @@ function ProductShow() {
             console.log(err);
         })
     },[])
-    const handleAddtocart = (e) => {
-        let qty = 1;
-        const id = e.target.id
-        if(id === id){
-            qty += 1;
-        }
-        console.log(qty);
-    }
     const renderProduct = () => {
         if(item && Object.keys(item)?.length >0 ){
            return(Object.keys(item).map((value , key) => { 
