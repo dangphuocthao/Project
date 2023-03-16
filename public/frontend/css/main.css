@@ -154,7 +154,9 @@ a#scrollUp i {
 .header-middle .container .row .col-sm-8 {
     padding-right: 0;
 }
-
+.cart_quantity_button{
+    cursor: pointer;
+}
 .usa {
     border-radius: 0;
     color: #B4B1AB;

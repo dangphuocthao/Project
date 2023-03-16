@@ -1,9 +1,12 @@
 
+import { useContext } from 'react';
 import {Link} from 'react-router-dom'
+import { UserContext } from '../../UserContext.js';
 
 
 
 function Header(){
+    const {user, setUser} = useContext(UserContext)
     const isLogged =  {
         isLog : localStorage.getItem("jwt") !==null,
     }
@@ -79,7 +82,7 @@ function Header(){
                             }
                             <li><a href><i className="fa fa-star" /> Wishlist</a></li>
                             <li><a href="checkout.html"><i className="fa fa-crosshairs" /> Checkout</a></li>
-                            <li><Link to={"/cart/"}><i className="fa fa-shopping-cart" /> Cart</Link></li>
+                            <li><Link to={"/cart/"}><i className="fa fa-shopping-cart" /> Cart {user.totalCart}</Link></li>
                             
                             {isLogged.isLog ? (
                                 <li onClick={handleLogout}><Link to={"/member/"}><i className="fa fa-lock" />Logout</Link></li>

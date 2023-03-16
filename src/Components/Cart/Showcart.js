@@ -3,9 +3,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Showcart() {
-    const [item, setItem] = useState({})
-    const [dataPd , setDataPd] = useState(JSON.parse(localStorage.getItem('dataPd')));
+    const [item, setItem] = useState([])
+    const [dataPd , setDataPd] = useState([]);
 
+    useEffect(() => {
+        const storedData = JSON.parse(localStorage.getItem('dataPd'));
+        if (storedData) {
+          setDataPd(storedData);
+        }
+      }, []);
     useEffect(() => {
         axios.post("https://localhost/laravel/public/api/product/cart" , dataPd)
         .then(res => {
@@ -13,14 +19,32 @@ function Showcart() {
         }).catch(err => {
             console.log(err);
         })
-    },[])
-    
-    console.log(item);
+    },[dataPd])
     useEffect(() => {
         if (Object.keys(dataPd).length > 0) {
           localStorage.setItem('dataPd', JSON.stringify(dataPd));
         }
       }, [dataPd]);
+    const handlePlus = (e) => {
+        const id = e.target.id;
+        setDataPd(prevState => {
+            const newState = { ...prevState };
+            if (newState[id]) {
+                newState[id] += 1; //tăng value của newState[id] lên 1 có nghĩa là tăng qty vì dataPd = {id:value} => {id:qty}
+            }
+            return newState;
+        });
+    }
+    const handleReduce = (e) => {
+        const id = e.target.id;
+        setDataPd(prevState => {
+            const newState = { ...prevState };
+            if (newState[id]) {
+                newState[id] -= 1; //giảm value của newState[id] lên 1 có nghĩa là tăng qty vì dataPd = {id:value} => {id:qty}
+            }
+            return newState;
+        });
+    }
     const renderCart = () => {
         if(Object.keys(item).length > 0){
             return(Object.keys(item).map((value) => {
@@ -41,13 +65,13 @@ function Showcart() {
                         </td>
                         <td className="cart_quantity">
                         <div className="cart_quantity_button">
-                            <a className="cart_quantity_up" > + </a>
-                            <input className="cart_quantity_input" type="text" name="quantity" defaultValue={item[value].qty} autoComplete="off" size={2} />
-                            <a className="cart_quantity_down" href> - </a>
+                            <a className="cart_quantity_up" id = {item[value].id} onClick={handlePlus}> + </a>
+                            <input className="cart_quantity_input" type="text" name="quantity" value={item[value].qty} autoComplete="off" size={2} />
+                            <a className="cart_quantity_down" id ={item[value].id} onClick={handleReduce} href> - </a>
                         </div>
                         </td>
                         <td className="cart_total" >
-                        <p className="cart_total_price"> </p>
+                        <p className="cart_total_price">{item[value].qty * item[value].price}</p>
 
                         </td>
                         <td className="cart_delete">

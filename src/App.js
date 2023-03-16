@@ -1,13 +1,19 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Menuacc from "./Components/Account/Menuacc";
 import Footer from "./Components/Layout/Footer";
 import Header from "./Components/Layout/Header";
 import MenuLeft from "./Components/Layout/MenuLeft";
+import { UserContext } from "./UserContext.js";
 
 
 
 function App(props) {
   let param = useLocation();
+  const [user , setUser] = useState({
+    totalCart: "",
+  })
+
   const show = () => {
     if(param["pathname"].includes("account")){
       return(
@@ -26,6 +32,7 @@ function App(props) {
   }
   return (
     <>
+      <UserContext.Provider value = {{user, setUser }}>
         <Header/>
         {/* <Slider/> */}
         <section>
@@ -36,9 +43,8 @@ function App(props) {
               </div>
             </div>
         </section>
-
         <Footer/>
-        
+      </UserContext.Provider>
     </>
   );
 }

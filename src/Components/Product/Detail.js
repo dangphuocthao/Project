@@ -1,13 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../../UserContext.js";
 
 function Detail() {
+    const {user, setUser } = useContext(UserContext)
     let {id} = useParams()
     const [qty, setQty] = useState(1);
     const [item, setItem] = useState();
     const [CBrand, setCBrand] = useState();
     const [dataPd , setDataPd] = useState({});
+    console.log(user);
     useEffect(() => {
         axios.get("https://localhost/laravel/public/api/product/detail/" + id)
         .then(res => {
@@ -25,7 +28,6 @@ function Detail() {
     const handleQty = (e) =>{
         setQty(e.target.value)
     }
-    console.log(qty);
     const handleAddtocart = () => {
         setDataPd(state=> {
             const newState = {...state}; // tạo 1 bản sao của biến state bằng toán tử spread (để tránh thay đổi trực tiếp giá trị của state)
@@ -33,9 +35,11 @@ function Detail() {
                 newState[id] += qty; // cộng thêm qty vào giá trị hiện tại của sản phẩm
             }else{
                 newState[id] =qty // thêm 1 khóa-giá trị mới vào newstate ( id(khoa):qty(giatri))
+                
             }
             return newState;
         })
+        
     }
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('dataPd'));
@@ -45,7 +49,8 @@ function Detail() {
       }, []);
     useEffect(() => {
         if (Object.keys(dataPd).length > 0) {
-          localStorage.setItem('dataPd', JSON.stringify(dataPd));
+            setUser((prevUser) => ({ ...prevUser, totalCart: Object.keys(dataPd).length }));
+            localStorage.setItem('dataPd', JSON.stringify(dataPd));
         }
       }, [dataPd]);
     const renderDetail = () => {
