@@ -13,7 +13,7 @@ function BlogDetail(props){
   const [inputs, setInputs] = useState('')
   const [iscomment, setIscomment] = useState("")
   const [idRe, setIdRe] = useState(null)
-
+  const [idTemp, setIdTemp] = useState(0)
   // Get DATA API
   useEffect(() => {
     axios.get("http://localhost/laravel/public/api/blog/detail/" + id)
@@ -73,11 +73,14 @@ function BlogDetail(props){
           <button type="submit" className="btn btn-primary" >Post comment</button>
           </form>
       </div>
-    </div>)
+    </div>
+    )
   }
-  const handleRep =() => {
-    setShowInput(true)
+  const handleRep =(e) => {
+    setIdTemp(e.target.id);
     setIdRe(1);
+    setShowInput(true)
+
   };
   const handleInputs = (e) => {
     setInputs(e.target.value)
@@ -130,69 +133,80 @@ function BlogDetail(props){
         setErr(errMess)
         }
 }
-
   // ListComment
   const renderComment = () => {  
     if((item.comment)?.length > 0) { 
-        return((item.comment).map((value, key) => {
-
+        return((item.comment).map((value) => {
+          if(value.id_comment === 0){
             return(     
-              <div key={key} className="response-area">
-                   <ul className="media-list">
+              <div key={value.id} >
                      <li className="media">
                        <a className="pull-left" href="#">
                          <img className="media-object" src={"https://localhost/laravel/public/upload/user/avatar/" +value.image_user} />
                        </a>
                        <div className="media-body">
-                         <ul className="sinlge-post-meta">
+                        <ul className="sinlge-post-meta">
                            <li><i className="fa fa-user" />
                            {value.name_user}
                            </li>
                            <li><i className="fa fa-clock-o" /> 1:33 pm</li>
                            <li><i className="fa fa-calendar" /> DEC 5, 2013</li>
-                         </ul>
-                         <p>{value.comment}</p>
-                         {showInput ? (commentForm ()) : 
-                         (
-                           <button className="btn btn-primary" value={idRe} onClick={handleRep}><i className="fa fa-reply" />Replay</button>
-                         )}
-                             
+                        </ul>
+                          <p>{value.comment}</p>
+                          {showInput && idTemp == value.id ? commentForm() :
+                          <button className="btn btn-primary" value={idRe} onClick={handleRep} id = {value.id}><i className="fa fa-reply" />Replay</button>
+                          }
                        </div>
-                        {/* <li className="media second-media">
-                        <a className="pull-left" href="#">
-                            <img className="media-object" src={"https:localhost/laravel/public/upload/user/avatar/" +value.image_user} />
-                          </a>
-                          <div className="media-body">
+                      </li>			
+               </div>
+          )
+        }
+      }))
+      }     
+    }
+    const renderReplay = () =>{
+      if((item.comment)?.length > 0) { 
+        return((item.comment).map((value) => {
+          if(value.id_comment === 1){
+            return(
+                  <div key={value.id}>
+                    <li className="media second-media">
+                      <a className="pull-left" href="#">
+                          <img className="media-object" src={"https:localhost/laravel/public/upload/user/avatar/" +value.image_user} />
+                        </a>
+                        <div className="media-body">
                           <ul className="sinlge-post-meta">
                             <li><i className="fa fa-user" />{value.name_user}</li>
                             <li><i className="fa fa-clock-o" /> 1:33 pm</li>
                             <li><i className="fa fa-calendar" /> DEC 5, 2013</li>
                           </ul>
-                          <p>{value.name_user}</p>
-                          <a className="btn btn-primary" href><i className="fa fa-reply" />Replay</a>                               
-                        </div>
-                        </li>  */}
-                      </li>
-                   </ul>					
-               </div>
-          )
-        
-          
-
+                          <p>{value.comment}</p>
+                          {showInput && idTemp == value.id ? commentForm() :
+                          <button className="btn btn-primary" value={idRe} onClick={handleRep} id = {value.id}><i className="fa fa-reply" />Replay</button>
+                          }
+                      </div>
+                    </li>  
+                  </div>
+            )
+          }
       }))
-      }     
-
     }
+  }
     return(
         <>
           <ErrMess err = {err} />
           {errorPage()}
           {renderData()}
           <div className="col-sm-9">
-          {renderComment()}
+            <div className="response-area">
+              <ul className="media-list">
+              {renderComment()}
+              {renderReplay()}
+              </ul>
+            </div>
           <RatePost/>
           {commentForm()}
-        
+
           </div>
 
       </>

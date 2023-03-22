@@ -21,7 +21,18 @@ import { Link } from "react-router-dom";
         console.error(err);
     })
     },[])
-
+    const handleDelete = (e) => {
+        const id = e.target.id;
+        axios.get("https://localhost/laravel/public/api/user/delete-product/" + id ,{
+            headers: {
+            Authorization: `Bearer ${token}`,
+            },
+        }).then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
     const renderProduct = () => {
         if(Object.keys(item).length > 0){
 
@@ -45,21 +56,7 @@ import { Link } from "react-router-dom";
                                     <p>{item[key].price}</p>
                                 </td>
                                 <td className="cart_delete">
-                                <Link type="button" className="btn btn-default" 
-                                onClick={ () => {
-                                    axios.get("https://localhost/laravel/public/api/user/delete-product/" + item[key].id ,{
-                                        headers: {
-                                        Authorization: `Bearer ${token}`,
-                                      },
-                                    }).then(res => {
-                                        console.log(res.data);
-                                    }).catch(err => {
-                                        console.log(err);
-                                    })
-                                   
-                                }}>
-                                    Delete
-                                </Link>
+                                <Link type="button" className="btn btn-default" id = {item[key].id} onClick={handleDelete}>Delete</Link>
                                 <Link to= {'/account/editproduct/' + item[key].id} type="button" className="btn btn-default">Edit</Link> 
                                 </td>
                                 </tr>

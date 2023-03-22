@@ -1,5 +1,5 @@
 
-import { useContext } from 'react';
+import { useContext , useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import { UserContext } from '../../UserContext.js';
 
@@ -7,6 +7,12 @@ import { UserContext } from '../../UserContext.js';
 
 function Header(){
     const {user, setUser} = useContext(UserContext)
+    useEffect(() => {
+        const storedData = JSON.parse(localStorage.getItem('dataPd'));
+        if (storedData) {
+            setUser((prevUser) => ({ ...prevUser, totalCart: Object.keys(storedData).length }));
+        }
+      }, []);
     const isLogged =  {
         isLog : localStorage.getItem("jwt") !==null,
     }

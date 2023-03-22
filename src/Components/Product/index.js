@@ -1,6 +1,6 @@
 import ProductShow from "./Product";
 
-function Product(params) {
+function Product() {
     return(
         <>
             <ProductShow/>

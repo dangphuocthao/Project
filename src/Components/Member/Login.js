@@ -87,7 +87,7 @@ function Login() {
                 <input type="password" placeholder="Password" name="password" onChange={handleInputs}/>
                 <p>{err.password}</p>
                 <span>
-                    <input type="checkbox" className="checkbox" />   {/* checked={check} onChange={handleCheck} */}
+                    <input type="checkbox" className="checkbox" />
                         Keep me signed in
                 </span>
                 <button type="submit" className="btn btn-default">Login</button>

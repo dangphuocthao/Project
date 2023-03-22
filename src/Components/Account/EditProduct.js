@@ -145,7 +145,6 @@ function EditProduct() {
                 }).catch(err => {
                     console.log(err);
                 })
-                console.log(files);
         }
     }
     return(

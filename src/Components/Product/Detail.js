@@ -10,7 +10,6 @@ function Detail() {
     const [item, setItem] = useState();
     const [CBrand, setCBrand] = useState();
     const [dataPd , setDataPd] = useState({});
-    console.log(user);
     useEffect(() => {
         axios.get("https://localhost/laravel/public/api/product/detail/" + id)
         .then(res => {

@@ -45,6 +45,14 @@ function Showcart() {
             return newState;
         });
     }
+    const handleDelete = (e) => {
+        const id = e.target.id;
+        setDataPd(prevState => {
+            const newState = {...prevState}
+            delete newState[id];
+            return newState;
+        })
+    }
     const renderCart = () => {
         if(Object.keys(item).length > 0){
             return(Object.keys(item).map((value) => {
@@ -75,7 +83,7 @@ function Showcart() {
 
                         </td>
                         <td className="cart_delete">
-                        <a className="cart_quantity_delete" href><i className="fa fa-times" /></a>
+                        <a className="cart_quantity_delete"><i className="fa fa-times" id = {item[value].id} onClick={handleDelete} /></a>
                         </td>
                     </tr>
                     </tbody>
